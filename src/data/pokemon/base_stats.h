@@ -9383,7 +9383,7 @@ const struct BaseStats gBaseStats[] =
         .expYield = 67,
         .evYield_SpAttack  = 1,
         #ifdef ITEM_EXPANSION
-            .item2 = ITEM_LEEKY_BARB,
+            .item2 = ITEM_STICKY_BARB,
         #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -9411,7 +9411,7 @@ const struct BaseStats gBaseStats[] =
         .evYield_Attack    = 1,
         .evYield_SpAttack  = 1,
         #ifdef ITEM_EXPANSION
-            .item2 = ITEM_LEEKY_BARB,
+            .item2 = ITEM_STICKY_BARB,
         #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -16895,7 +16895,7 @@ const struct BaseStats gBaseStats[] =
         .expYield = 61,
         .evYield_Defense   = 1,
         #ifdef ITEM_EXPANSION
-            .item2 = ITEM_LEEKY_BARB,
+            .item2 = ITEM_STICKY_BARB,
         #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
@@ -16926,7 +16926,7 @@ const struct BaseStats gBaseStats[] =
         .expYield = 171,
         .evYield_Defense   = 2,
         #ifdef ITEM_EXPANSION
-            .item2 = ITEM_LEEKY_BARB,
+            .item2 = ITEM_STICKY_BARB,
         #endif
         .genderRatio = PERCENT_FEMALE(50),
         .eggCycles = 20,
