@@ -269,6 +269,12 @@ $(FONTGFXDIR)/short.latfont: $(FONTGFXDIR)/latin_short.png
 $(FONTGFXDIR)/narrow.latfont: $(FONTGFXDIR)/latin_narrow.png
 	$(GFX) $< $@
 
+$(FONTGFXDIR)/bw_level.latfont: $(FONTGFXDIR)/bw_level.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/widenumber.latfont: $(FONTGFXDIR)/widenumber.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/small_narrow.latfont: $(FONTGFXDIR)/latin_small_narrow.png
 	$(GFX) $< $@
 
