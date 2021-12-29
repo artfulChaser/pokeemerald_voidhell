@@ -166,26 +166,6 @@ static const struct FontInfo sFontInfos[] =
         .bgColor = 1,
         .shadowColor = 3,
     },
-        [FONT_LEVEL_BW] = {
-        .fontFunction = FontFunc_BWLevel,
-        .maxLetterWidth = 8,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 2,
-        .bgColor = 1,
-        .shadowColor = 3,
-    },
-        [FONT_WIDENUMBER] = {
-        .fontFunction = FontFunc_Widenumber,
-        .maxLetterWidth = 9,
-        .maxLetterHeight =  14,
-        .letterSpacing = 0,
-        .lineSpacing = 0,
-        .fgColor = 2,
-        .bgColor = 1,
-        .shadowColor = 3,
-    },
     [FONT_SHORT_COPY_2] = {
         .fontFunction = FontFunc_ShortCopy2,
         .maxLetterWidth = 6,
@@ -245,6 +225,26 @@ static const struct FontInfo sFontInfos[] =
         .fgColor = 1,
         .bgColor = 2,
         .shadowColor = 15,
+    },
+    [FONT_LEVEL_BW] = {
+        .fontFunction = FontFunc_BWLevel,
+        .maxLetterWidth = 8,
+        .maxLetterHeight =  14,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    [FONT_WIDENUMBER] = {
+        .fontFunction = FontFunc_Widenumber,
+        .maxLetterWidth = 9,
+        .maxLetterHeight =  14,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
     }
 };
 
@@ -744,7 +744,7 @@ static u16 FontFunc_BWLevel(struct TextPrinter *textPrinter)
 
     if (subStruct->hasFontIdBeenSet == FALSE)
     {
-        subStruct->fontId = FONT_SHORT;
+        subStruct->fontId = FONT_LEVEL_BW;
         subStruct->hasFontIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -756,7 +756,7 @@ static u16 FontFunc_Widenumber(struct TextPrinter *textPrinter)
 
     if (subStruct->hasFontIdBeenSet == FALSE)
     {
-        subStruct->fontId = FONT_SHORT;
+        subStruct->fontId = FONT_WIDENUMBER;
         subStruct->hasFontIdBeenSet = TRUE;
     }
     return RenderText(textPrinter);
@@ -1183,8 +1183,10 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             break;
         case FONT_LEVEL_BW:
             DecompressGlyph_BWLevel(currChar, textPrinter->japanese);
+            break;
         case FONT_WIDENUMBER:
             DecompressGlyph_Widenumber(currChar, textPrinter->japanese);
+            break;
         case FONT_SHORT:
         case FONT_SHORT_COPY_1:
         case FONT_SHORT_COPY_2:

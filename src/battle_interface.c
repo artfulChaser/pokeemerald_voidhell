@@ -1106,7 +1106,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
     }
 
     xPos = 5 * (3 - (objVram - (text + 2)));
-    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos, 4, 0, &windowId);
+    windowTileData = AddTextPrinterAndCreateWindowOnHealthbox(text, xPos + 12, 4, 0, &windowId);
     spriteTileNum = gSprites[healthboxSpriteId].oam.tileNum * TILE_SIZE_4BPP;
 
     if (GetBattlerSide(battler) == B_SIDE_PLAYER)
@@ -1122,7 +1122,7 @@ static void UpdateLvlInHealthbox(u8 healthboxSpriteId, u8 lvl)
         objVram = (void*)(OBJ_VRAM0);
         objVram += spriteTileNum + 0x400;
     }
-    TextIntoHealthboxObject(objVram, windowTileData, 3);
+    TextIntoHealthboxObject(objVram, windowTileData, 5);
     RemoveWindowOnHealthbox(windowId);
 }
 
@@ -1139,10 +1139,10 @@ void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent)
         if (maxOrCurrent != HP_CURRENT) // singles, max
         {
             ConvertIntToDecimalStringN(text, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
-            windowTileData = AddTextPrinterAndCreateWindowForHPSpecifically(text, -2, 4, 1, &windowId);
+            windowTileData = AddTextPrinterAndCreateWindowForHPSpecifically(text, 0, 4, 2, &windowId);
             objVram = (void*)(OBJ_VRAM0);
             objVram += spriteTileNum + 0xB40;
-            HpTextIntoHealthboxObject(objVram, windowTileData, 4);
+            HpTextIntoHealthboxObject(objVram, windowTileData, 3);
             RemoveWindowOnHealthbox(windowId);
         }
         else // singles, current
@@ -1150,7 +1150,7 @@ void UpdateHpTextInHealthbox(u8 healthboxSpriteId, s16 value, u8 maxOrCurrent)
             ConvertIntToDecimalStringN(text, value, STR_CONV_MODE_RIGHT_ALIGN, 3);
             text[3] = CHAR_SLASH;
             text[4] = EOS;
-            windowTileData = AddTextPrinterAndCreateWindowForHPSpecifically(text, -2, 4, 1, &windowId);
+            windowTileData = AddTextPrinterAndCreateWindowForHPSpecifically(text, 0, 4, 2, &windowId);
             objVram = (void*)(OBJ_VRAM0);
             objVram += spriteTileNum + 0x3E0;
             HpTextIntoHealthboxObject(objVram, windowTileData, 1);
@@ -2752,7 +2752,7 @@ static u8* AddTextPrinterAndCreateWindowForHPSpecifically(const u8 *str, u32 x, 
     color[1] = 3;
     color[2] = 1;
 
-    AddTextPrinterParameterized4(winId, FONT_WIDENUMBER, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
+    AddTextPrinterParameterized4(winId, FONT_LEVEL_BW, x, y, 0, 0, color, TEXT_SKIP_DRAW, str);
 
     *windowId = winId;
     return (u8*)(GetWindowAttribute(winId, WINDOW_TILE_DATA));
